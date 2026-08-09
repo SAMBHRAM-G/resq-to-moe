@@ -1,0 +1,9 @@
+{
+  "name": "moe-backend-mesh",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "express": "^4.19.2"
+  }
+}
