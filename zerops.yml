@@ -1,0 +1,30 @@
+zerops:
+  # SERVICE 1: The Node.js 20 Backend Core Compute Engine
+  - setup: moe-backend
+    run:
+      backend:
+        runtime: nodejs-20
+        build:
+          base: nodejs-20
+          buildCommands:
+            - cd backend && npm install
+          deployFiles:
+            - backend/server.js
+            - backend/package.json
+            - backend/node_modules
+        run:
+          start: node backend/server.js
+
+  # SERVICE 2: The Python 3.11 Frontend Analytics Dashboard
+  - setup: resq-frontend
+    run:
+      backend:
+        runtime: python-3.11
+        build:
+          base: python-3.11
+          buildCommands:
+            - pip install -r frontend/requirements.txt
+          deployFiles:
+            - frontend/app.py
+        run:
+          start: streamlit run frontend/app.py --server.port 8080 --server.address 0.0.0.0
